@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="on">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="./style.css">
+
+        <script src="./js/script.js" defer></script>
+
+        <title>Super Mario</title>
+    </head>
+
+    <body>
+
+        <div class="game-board">
+            <img src="./img/mario.gif" class="mario">
+            <img src="./img/pipe.png" class="pipe">
+            <img src="./img/supermario.jpg" class="supermario">
+            <img src="./img/clouds.png" class="clouds">
+
+            <h2>Seja bem vindo, ao meu perfil no Github</h2>
+            <p>Aqui você encontrara toda minha experiencia em desenvolvimento de projetos.</p>
+            
+            
+            <script>
+                const mario = document.querySelector('.mario');
+                const pipe = document.querySelector('.pipe');
+
+
+                const jump = () => {
+                mario.classList.add('jump'); 
+
+                setTimeout(()=> {
+                    mario.classList.remove('jump');
+                }, 500);
+
+                }
+
+                const loop = setInterval(()=> {
+
+                const pipeposition = pipe.offsetLeft;
+                const marioposition = +window.getComputedStyle(mario).bottom.replace('px','')
+    
+
+                onsole.log(marioposition);
+
+
+                if (pipeposition <= 120 && pipeposition > 0 && marioposition < 80) {
+   
+   
+                pipe.style.animation = "none"; 
+                pipe.style.left = `${pipeposition}px`;
+
+                    mario.style.animation = "none";
+                mario.style.bottom = `${marioposition}px`;
+
+                mario.src = './img/game-over.png';
+                mario.style.width = '75px'
+                mario.style.marginLeft = '50px';
+
+                clearInterval(loop); 
+
+                }
+       
+
+
+
+                }, 10);
+
+ 
+  
+                document.addEventListener('keydown', jump);
+            </script>
+
+            <style>
+                *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-board{
+    width: 100%;
+    height: 500px;
+    border-bottom: 15px solid rgb(35,160,35);
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#87ceeb, #e0f6ff);
+
+}
+
+.pipe{
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    animation: pipe-animation 3s infinite linear;
+}
+
+.mario{
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+}
+
+.jump{
+    animation: jump 500ms ease-out;
+}
+.supermario{
+    position: absolute;
+    width: 350px;
+    left: 75%;
+    bottom: 100px;
+    
+}
+
+
+.clouds{
+    position: absolute;
+    width: 450px;
+    animation: clouds-animation 20s infinite linear;
+}
+
+.jogar{
+    left: 50%;
+    width: 150px;
+}
+
+.botao{
+    width: 100%;
+    height: 150px;
+   
+    background-color: rgb(35,160,35);
+}
+
+.game-board h2{
+    text-align: center;
+    color: #124265;
+    font-size: 23px;
+    margin-top: 230px;
+
+}
+
+.game-board p{
+    text-align: center;
+    
+    font-size: 18px;
+
+}
+
+
+
+@keyframes jump{
+   
+    0%{
+        bottom: 0;
+    }
+
+    40%{
+        bottom: 180px;
+    }
+
+    60%{
+        bottom: 180px;
+    }
+    
+    100%{
+        bottom: 0;
+    }
+}    
+
+@keyframes pipe-animation{
+    from{
+        right: -80px;
+
+    }
+    to{
+        right: 100%;
+
+
+    }
+}
+
+@keyframes clouds-animation{
+    from{
+        right: -450px;
+
+    }
+    to{
+        right: 100%;
+
+
+    }
+}
+
+
+            </style>
+  
+        </div> 
+      
+
+        
+    </body>
+
+
+</html>
